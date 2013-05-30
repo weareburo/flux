@@ -1,0 +1,36 @@
+{
+	"name":"Flux",
+	"description":"Flux Social",
+	"author":"tom <tom@inoui.io>",
+   "version": "0.0.1",
+   "dependencies": {
+      "ejs": "*",
+      "moment": "*",
+	  "underscore": "*",
+      "express": "3.0.0rc4",
+      "querystring": "*",
+      "request": "2.9.203",
+      "sprintf": "*",
+      "express-partials": "*",
+      "express-singly": "*",
+      "mongoose":"3.6.11",
+      "socket.io":">=0.9.5"
+   },
+  "scripts": {
+    "start": "supervisor app"
+  },
+
+	"devDependencies":{
+		"vows":">=0.6.2",
+		"mocha":">=1.0.1",
+		"should":">=0.6.1",
+		"request":">=2.9.x",
+        "soda":">=0.2.5",
+	    "supervisor": "*"
+
+	},
+	"engines": {
+     "node": "node >= 0.8.x",
+     "npm":  "1.1.x"
+   }
+}

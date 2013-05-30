@@ -1,0 +1,31 @@
+<div id="grid" class="grid">
+<% for(var i=0; i<items.length; i++) {%>
+
+		
+		<% switch(items[i].source_service) { 
+			
+			case 'youtube': %>
+				<%- include blocks/youtube.ejs %>
+			<% break;
+
+			case 'twitter': %>
+				<%- include blocks/twitter.ejs %>
+			<% break;
+
+			case 'instagram': %>
+				<%- include blocks/instagram.ejs %>
+			<% break;
+
+			case 'tumblr': %>
+				<%- include blocks/tumblr.ejs %>
+			<% break;
+
+			case 'facebook': %>
+				<%- include blocks/facebook.ejs %>
+			<% break;
+
+			
+		} %>
+
+<% } %>		
+</items>

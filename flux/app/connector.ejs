@@ -1,0 +1,23 @@
+<p>Register with one or more of these services:</p>
+	<h2><%= session.accessToken %></h2>	
+<ul id="auth">
+ <li><%- authorizationLink('facebook', 'Facebook') %></li>
+ <li><%- authorizationLink('youtube', 'Youtube') %></li>
+ <li><%- authorizationLink('instagram', 'Instagram') %></li>
+ <li><%- authorizationLink('tumblr', 'Tumblr') %></li>
+ <li><%- authorizationLink('twitter', 'Twitter') %></li>
+</ul>
+
+<div id="empowered">
+ <a href="https://singly.com/"><img src="/empowered.png" /></a>
+</div>
+
+<div id="access-token-wrapper">
+ <p>Here's your access token for making API calls directly: <input type="text" id="access-token" /></p>
+</div>
+
+<div id="profiles"></div>
+
+<hr>
+
+<div id="statuses"></div>

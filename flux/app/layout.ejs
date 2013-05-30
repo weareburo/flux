@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Flux.io</title>
+
+  <!-- Included CSS Files -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/entypo.css">
+  <link rel="stylesheet" href="css/app.css">
+
+</head>
+
+<body>
+
+	<!-- Header  -->
+	<div class="fixed header">
+	  <!-- <nav class="row-fluid top-bar">
+	      <div class="small-2 columns toggleler">
+				<a href="#" class='toggle'><span class="entypo add-to-list "></span></a></div>
+	      <div class="small-5 columns text-center ">adidas</div>
+	      <div class="small-2 small-offset-1 columns ">
+			  <ul class="button-group layoutTpl">
+			    <li class="active"> <a href="#" class="small button secondary active" id="tpl1">1</a></li>
+			    <li><a href="#" class="small button secondary" id="tpl2">2</a></li>
+			    <li><a href="#" class="small button secondary" id="tpl3">3</a></li>
+			  </ul>
+
+	      </div>
+	      <div class="small-2 columns" id="search">
+			 <input type="text" name="search" value="" id="search">
+	      </div>
+	  </nav> -->
+	</div>
+  <!-- End Header  -->
+
+  <nav id="nav" role="navigation">
+     <div class="block">
+		<%- include menu.ejs %>
+     </div>
+ </nav>
+
+  <!-- Main Grid Section -->
+  <div id="main"  class="row-fluid">
+		<div class="container">
+      		<%- body %>
+		</div>
+  </div>
+  <!-- End Grid Section -->
+  <!-- Footer
+  <footer class="row-fluid">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; Copyright Flux by büro.</p>
+        </div>
+    </div>
+  </footer> -->
+  
+
+<script data-main="js/config" src="./vendor/requirejs/require.js"></script>
+
+</body>
+</html>

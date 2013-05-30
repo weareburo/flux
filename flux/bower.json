@@ -1,0 +1,12 @@
+{
+  "name": "flux",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "latest",
+    "infinity": "latest",
+	"underscore" : "latest",
+	"backbone" : "latest",
+    "aura" : "latest",
+    "tilejs" : "http://cloud.github.com/downloads/thinkpixellab/tilesjs/tiles.js"
+  }
+}

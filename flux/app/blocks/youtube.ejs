@@ -1,0 +1,28 @@
+
+<section data-provider="<%= items[i].source_service %>"  data-type="<%= items[i].type %>">
+	<% if(items[i].picture.url){ %>
+	<div class="story-content"  style="background-image:url('<%= items[i].picture.url %>')">
+
+		<div class='icons'>
+			<div class="row-fluid">
+				<div class="small-6 columns tt">Vues : <%= items[i].popularity %></div>
+				<div class="small-6 columns text-right"><a href="#"><span class="entypo-social vimeo"></span></a></div>
+			</div>
+		</div>
+
+		<div class="hover">
+			<div class="row-fluid">
+				<div class="small-6 columns title"><h2><%= items[i].title %></h2></div>
+				<div class="small-6 columns text-right"><a href="#"><span class="entypo leaf"></span></a></div>
+			</div>
+		</div>
+		
+		<div class="story-opened" data-src="<%= items[i].link.url %>"> </div>
+
+	</div>
+	<% }else{ %>
+	<div class="story-content">
+		<h2 class="status"><%= items[i].title %></h2>				
+	</div>				
+	<% } %>
+</section>

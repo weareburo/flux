@@ -1,0 +1,29 @@
+
+<section data-provider="<%= items[i].source_service %>"  data-type="<%= items[i].type %>">
+	
+	<div <% if(items[i].picture.url){ %> style="background-image:url('<%= items[i].picture.url %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+		<div class="tint">
+
+			<div class='icons'>
+				<a href="#"><span class="entypo-social twitter"></span></a> 3 days ago <%= items[i].popularity %>
+			</div>
+
+			<div class="hover">
+
+				<div class='title'><h2><%= items[i].title %></h2></div>
+				
+				<div class='actions'>
+				
+					<ul class="inline-list">
+						<li><a href="#"><span class="entypo reply"></span> Reply</a> </li>
+						<li><a href="#"><span class="entypo retweet"></span> Retweet</a></li>
+						<li><a href="#"><span class="entypo star"></span> Favorites</a></li>
+					</ul>
+				
+				</div>
+			</div>
+
+		</div>			
+	</div>
+
+</section>
