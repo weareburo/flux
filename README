@@ -3,6 +3,9 @@ Flux
 
 Flux....
 
+Need mongodb installed, 
+with a DB called flux
+
 Installation 
 ------------
 
@@ -20,9 +23,16 @@ server  (from repo directory)
 Start the bouzin
 ------------
 # cd flux.server
-# node app.js (to watch directory use: npm start)
+# node app.js (or, to watch directory use: npm start)
 
 
 
+routes
+------------
 
+http://localhost:8080/connector
+Connect account to different social accounts
+and save feeds to DB
 
+http://localhost:8080/
+launch once 
