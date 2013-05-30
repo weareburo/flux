@@ -1,0 +1,8 @@
+.DS_Store
+.deploy_config
+npm-debug.log
+/logs
+/temp
+/flux/node_modules
+/flux/app/vendors
+/flux.server/node_modules
