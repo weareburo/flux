@@ -3,6 +3,26 @@ Flux
 
 Flux....
 
-Installation
+Installation 
 ------------
+
+client (from repo directory)
+
+# cd flux
+# bower install
+======= 
+server  (from repo directory)
+
+# cd flux.server
+# npm install
+
+
+Start the bouzin
+------------
+# cd flux.server
+# node app.js (to watch directory use: npm start)
+
+
+
+
 
