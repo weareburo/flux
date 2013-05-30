@@ -4,5 +4,5 @@ npm-debug.log
 /logs
 /temp
 /flux/node_modules
-/flux/app/vendors
+/flux/app/vendor
 /flux.server/node_modules
