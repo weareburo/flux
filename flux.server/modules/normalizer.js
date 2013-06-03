@@ -142,7 +142,7 @@ Normalizer.prototype.tumblr_photo = function(item) {
             url: item.map.author.photo
           }
         },
-        recipients: item.map.participants,
+        recipients: null,
         title: item.map.text,
         message: item.data.caption,
         tags: null,
@@ -172,7 +172,7 @@ Normalizer.prototype.tumblr_photo = function(item) {
 Normalizer.prototype.tumblr_link = function(item) {
 
     var result = {};
-    return result;
+    return false;
     
 }
 
@@ -214,7 +214,7 @@ Normalizer.prototype.tumblr_video = function(item) {
     //     popularity: item.data.note_count,
     //     source_service: 'tumblr'
     // };
-    return {};
+    return false;
     
 }
 

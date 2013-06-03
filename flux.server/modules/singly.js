@@ -31,7 +31,7 @@ Singly.prototype.consumeFeeds = function() {
 
 Singly.prototype.poller = function (service, options) {
     var that = this;
-    
+    var tot = 0;
     console.log(options.host+options.path);
 
     var reqGet = https.get(options, function (res) {
@@ -44,18 +44,19 @@ Singly.prototype.poller = function (service, options) {
             var o = [];
             _.each(feed, function (item) {
                 var type = item.map.oembed.type;
-                console.log(type);
                 var normalizedItem = normalizer[service+'_'+type](item);
-                var mongoItem = new that.itemModel(normalizedItem)
-                    .save(function (err) {
-                      if (err) console.log('meow');
-                      console.log("saved ONE ITEM");
-                    });
-
+                if (normalizedItem) {
+                    var mongoItem = new that.itemModel(normalizedItem)
+                        .save(function (err) {
+                          if (err) console.log('meow');
+                          console.log("saved ITEM " + tot++);
+                        });
+                    
+                }
             });
-            console.log('finished');
+            console.log('finished ' + tot + ' items saved');
         });
-    console.log('all finished');
+        console.log('all finished');
     });
     reqGet.end();
     reqGet.on('error', function (e) {

@@ -8,10 +8,6 @@ define([
       initialize : function(models, options) {
           
       },
-      // parse: function(response) {
-      //     return normalizeFacebook(response);
-      // },
-      
       defaults: {
           date: null, // OK
           dateFormat: null,
@@ -22,7 +18,7 @@ define([
             photo: null,
           },
           recipients: null,
-          title: 'asdsadsadsa',
+          title: '',
           message: null, // OK
           tags: null,
           picture: {

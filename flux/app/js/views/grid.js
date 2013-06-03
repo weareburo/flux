@@ -60,8 +60,7 @@ define([
 //        $(document).on('keyup', this.keyup);
     },
     addOne:function(e) {
-//        if (e == 'sync') this.render();
-        console.log('add one ' + e);
+        
     },
     reset:function(e) {
         console.log('reset ' + e);
@@ -83,7 +82,6 @@ define([
     },
     createTile:function (tileId) {
         var model = this.collection.at(tileId);
-
         var tile = new Tile({id:tileId, model:model});
         return tile.getTile();
     },
@@ -109,8 +107,6 @@ define([
                     zIndex:10
                 });
         }
-        
-//        $('.item.open').removeClass('open');
     },
     onScrollingHandler:function () {
         clearTimeout(this.timer);

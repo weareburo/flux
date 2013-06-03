@@ -111,15 +111,18 @@ app.get('/feed', function(req, res) {
     var url_parts   = url.parse(req.url, true);
     var query       = url_parts.query;
     var skip        = 0;
-    var limit        = 80;
+    var limit        = 10;
     
     if (query.page != undefined) skip = query.page;
-
-    itemModel.find().sort({date:-1}).skip(skip).limit(limit).execFind(
-        function (arr,data) {
-            res.json(data)
-        }
-    );
+console.log(skip);
+    
+    var count = itemModel.count(function(err, c) {
+        itemModel.find().sort({date:-1}).skip(skip*limit).limit(limit).execFind(
+            function (arr,data) {
+                res.json({count:c,limit:limit,data:data});
+            }
+        );
+    });
 });
 
 

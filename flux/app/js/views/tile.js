@@ -12,6 +12,7 @@ define([
         },
         t:undefined,
         initialize: function () {
+            if (this.model.get('source_service') == null) false;
             this.template = _.template(_tpl[this.model.get('source_service')]);
         },
 
@@ -26,7 +27,6 @@ define([
             return this.t;
         },
         render: function(){
-            console.log(this.model.toJSON())
             var that = this;
             return this.template(this.model.toJSON())
         }

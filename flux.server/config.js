@@ -12,7 +12,7 @@ module.exports = {
         // services:['youtube', 'facebook', 'twitter', 'tumblr', 'instagram' ],
         // types:['videos', 'photos','news', 'statuses'],
         services:{
-//            tumblr:'tumblr/posts',
+            tumblr:'tumblr/posts',
             instagram:'instagram/feed',
             //facebook:'instagram/feed',
             // twitter:'instagram/feed',
