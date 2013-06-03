@@ -14,6 +14,7 @@ module.exports = {
         services:{
             tumblr:'tumblr/posts',
             instagram:'instagram/feed',
+            youtube:'youtube/uploads',
             //facebook:'instagram/feed',
             // twitter:'instagram/feed',
             // tumblr:'instagram/feed',

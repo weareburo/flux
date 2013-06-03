@@ -86,14 +86,21 @@ define([
         return tile.getTile();
     },
     toggleItem:function(e) {
-        
+        var model = this.collection.at($(e.currentTarget).index()-1);
         if ($(e.currentTarget).hasClass('open')) {
+            
+            model.set('open', false);
+            
             $('.grid').removeClass('expanded')
             $(e.currentTarget).removeClass('expanded')
             $(e.currentTarget)
                 .removeClass('open')
                 .attr('style', $(e.currentTarget).data('style'))
         } else {
+            
+            model.set('open', true);
+            
+            
             $('.grid').addClass('expanded');
             $(e.currentTarget).addClass('expanded') 
             $(e.currentTarget)

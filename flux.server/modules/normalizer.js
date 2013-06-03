@@ -425,63 +425,61 @@ Normalizer.prototype.twitter_text = function(item) {
     
 }
 
-Normalizer.prototype.youtube_upload = function(item) {
-    var dateFormatYoutube, linkIndex, result, sizes, tempMoment, thumbIndex, types, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
-    var result = {};
+Normalizer.prototype.youtube_video = function(item) {
+    
+    var aVideoId = item.map.id.split(':')
+    var videoId = aVideoId[aVideoId.length-1];
+    var url = 'http://www.youtube.com/embed/'+videoId+'?html5=1';
+
+    for( var i in item.data.media$group) {
+        console.log(i);
+        console.log(item.data.media$group[i]);
+    }
+
+    var sizes = _.pluck(item.data.media$group.media$thumbnail, 'yt$name');
+    thumbIndex = _.indexOf(sizes, 'hqdefault');
 
 
-      if (item.data.author != null) {
-        result.author = {
+    var result = {
+        date: item.data.published.$t,
+        dateFormat: moment(item.data.published.$t).fromNow(),
+        author: {
           name: item.data.author[0].name.$t,
           id: item.data.author[0].yt$userId.$t,
           url: "http://www.youtube.com/user/" + (item.data.author[0].name.$t.replace(/\s/g, '')),
           thumbnail: {
             url: '/images/user_blue.png'
           }
-        };
-      }
-      if (((_ref1 = item.data.title) != null ? _ref1.$t : void 0) != null) {
-        result.title = item.data.title.$t;
-      }
-      if (((_ref2 = item.data.media$group) != null ? (_ref3 = _ref2.media$description) != null ? _ref3.$t : void 0 : void 0) != null) {
-        result.message = item.data.media$group.media$description.$t;
-      }
-      if (((_ref4 = item.data.media$group) != null ? (_ref5 = _ref4.media$keywords) != null ? _ref5.$t : void 0 : void 0) != null) {
-        result.tags = item.data.media$group.media$keywords.$t.replace(/\s+/g, '').split(",");
-      }
-      if (((_ref6 = item.data.media$group) != null ? _ref6.media$thumbnail : void 0) != null) {
-        sizes = _.pluck(item.data.media$group.media$thumbnail, 'yt$name');
-        thumbIndex = _.indexOf(sizes, 'mqdefault');
-        result.thumbnail = {
+        },
+        recipients: null,
+        title: item.data.title.$t,
+        message: item.data.media$group.media$description.$t,
+//        tags: (!)item.data.media$group.media$keywords.$t.replace(/\s+/g, '').split(","),
+        picture: {
+            url: item.data.media$group.media$thumbnail[thumbIndex].url,
+            width: item.data.media$group.media$thumbnail[thumbIndex].width,
+            height: item.data.media$group.media$thumbnail[thumbIndex].height
+        },
+        thumbnail: {
           url: item.data.media$group.media$thumbnail[thumbIndex].url,
-          widht: item.data.media$group.media$thumbnail[thumbIndex].width,
+          width: item.data.media$group.media$thumbnail[thumbIndex].width,
           height: item.data.media$group.media$thumbnail[thumbIndex].height
-        };
-        
-        result.picture = result.thumbnail;
-        
-      }
-      
-
-      var aVideoId = item.map.id.split(':')
-      var videoId = aVideoId[aVideoId.length-1];
-      var url = 'http://www.youtube.com/embed/'+videoId+'?html5=1';
-
-
-      if (item.data.link != null) {
-        types = _.pluck(item.data.link, 'rel');
-        linkIndex = _.indexOf(types, 'alternate');
-        result.link = {
-          url: url,
-          title: result.title
-        };
-      }
-      result.type = 'video';
-      result.source_service = 'youtube';
-      result.popularity = (!_.isUndefined(item.data.yt$statistics) && !_.isUndefined(item.data.yt$statistics.viewCount)) ? item.data.yt$statistics.viewCount : 0;
-
-    return result;
+        },
+        link: {
+          url: url
+          // title: null,
+          // description: null
+        },
+        type: 'video',
+        popularity: (!_.isUndefined(item.data.yt$statistics) && !_.isUndefined(item.data.yt$statistics.viewCount)) ? item.data.yt$statistics.viewCount : 0,
+        source_service: 'youtube'
+    };
     
+    // if (item.data.likes.count > 0) {
+    //     returnitem.data.likes.count
+    // }
+    
+    return result;       
 }
 
 // 

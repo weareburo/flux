@@ -35,7 +35,6 @@ define([
               ]
         ]
       }
-
   });
   return GridTemplate;
 

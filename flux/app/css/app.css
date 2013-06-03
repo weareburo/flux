@@ -307,6 +307,7 @@ left: 0;
 
 /*tumblr, instagram*/
 .grid > section[data-provider='tumblr'] .hover, 
+.grid > section[data-provider='youtube'] .hover, 
 .grid > section[data-provider='instagram'] .hover {
     position:absolute;
     bottom:-80px;
@@ -315,20 +316,24 @@ left: 0;
     background-color:#fff;
 }
 .grid > section[data-provider='tumblr']:hover .hover,
+.grid > section[data-provider='youtube']:hover .hover,
 .grid > section[data-provider='instagram']:hover .hover {
     bottom:0;
 }
 .grid > section[data-provider='tumblr'] .hover h2,
+.grid > section[data-provider='youtube'] .hover h2,
 .grid > section[data-provider='instagram'] .hover h2 {
     font-size:16px;
     color:#000;
     text-overflow: ellipsis;
 }
 .grid > section[data-provider='tumblr'] .hover h2 .entypo-social,
+.grid > section[data-provider='youtube'] .hover h2 .entypo-social,
 .grid > section[data-provider='instagram'] .hover h2 .entypo-social {
     color:#114e63;
 }
 .grid > section[data-provider='tumblr']:hover .icons,
+.grid > section[data-provider='youtube']:hover .icons,
 .grid > section[data-provider='instagram']:hover .icons {
     display:none;
 }

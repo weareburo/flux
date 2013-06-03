@@ -43,7 +43,13 @@ Singly.prototype.poller = function (service, options) {
             var feed = JSON.parse(content);
             var o = [];
             _.each(feed, function (item) {
-                var type = item.map.oembed.type;
+                console.log(item);
+                var type;
+                if (!_.isUndefined(item.map.oembed)) {
+                    type = item.map.oembed.type;
+                } else {
+                    type = 'video';
+                }
                 var normalizedItem = normalizer[service+'_'+type](item);
                 if (normalizedItem) {
                     var mongoItem = new that.itemModel(normalizedItem)

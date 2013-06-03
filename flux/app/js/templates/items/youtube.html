@@ -1,0 +1,21 @@
+<section data-provider="<%= source_service %>"  data-type="<%= type %>">	
+	<div <% if(picture.url){ %> style="background-image:url('<%= picture.url %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+		<div class='icons'>
+			<span class="entypo video"></span> <%= dateFormat %> <%= popularity %> <span class="entypo eye"></span>
+		</div>
+		<div class="tint">
+			<div class="hover">
+				<div class='title'><h2><span class="entypo video red"></span> <%= title %></h2></div>
+				<p><%= message %></p>
+			</div>			
+		</div>	
+
+		<div class='content'  data-video="<%= link.url %>" data-img="<%= picture.url %>" data-width="<%= picture.width %>"data-height="<%= picture.height %>">
+			<div class="story-opened" style="width:<%= picture.width %>px;height:<%= picture.height %>px;">
+				<img src="<%= picture.url %>" alt="" />
+			</div>			
+		</div>
+
+	</div>
+
+</section>

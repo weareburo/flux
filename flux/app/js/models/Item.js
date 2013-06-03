@@ -9,6 +9,7 @@ define([
           
       },
       defaults: {
+          open: false, // OK
           date: null, // OK
           dateFormat: null,
           author: { // OK
