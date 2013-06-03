@@ -8,6 +8,7 @@ require.config({
     backbone: '../vendor/backbone/backbone',
     templates: 'templates',
     aura: '../vendor/aura/lib/aura',
+    infinity: '../vendor/infinity/infinity',
     tilejs: '../vendor/tilejs/index',
     text: '../vendor/requirejs-text/text'
   },

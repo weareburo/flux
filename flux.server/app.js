@@ -111,7 +111,7 @@ app.get('/feed', function(req, res) {
     var url_parts   = url.parse(req.url, true);
     var query       = url_parts.query;
     var skip        = 0;
-    var limit        = 20;
+    var limit        = 80;
     
     if (query.page != undefined) skip = query.page;
 

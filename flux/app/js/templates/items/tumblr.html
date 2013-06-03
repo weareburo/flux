@@ -1,14 +1,21 @@
 <section data-provider="<%= source_service %>"  data-type="<%= type %>">	
 	<div <% if(picture.url){ %> style="background-image:url('<%= picture.url %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+		<div class='icons'>
+			<span class="entypo-social c-<%= source_service %>"></span> <%= dateFormat %> <%= popularity %> notes
+		</div>
 		<div class="tint">
-			<div class='icons'>
-				<span class="entypo-social c-<%= source_service %>"></span> <%= dateFormat %> <%= popularity %> notes
-			</div>
 			<div class="hover">
 				<div class='title'><h2><span class="entypo-social c-<%= source_service %>"></span> <%= title %></h2></div>
 				<p><%= message %></p>
-			</div>
-		</div>			
+			</div>			
+		</div>	
+
+		<div class='content'>
+			<div class="story-opened" style="width:<%= picture.width %>px;height:<%= picture.height %>px;">
+				<img src="<%= picture.url %>" alt="" />
+			</div>			
+		</div>
+
 	</div>
 
 </section>

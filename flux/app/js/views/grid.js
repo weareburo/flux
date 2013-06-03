@@ -1,10 +1,10 @@
 define([
-  'jquery', 'underscore', 'backbone', 'tilejs',
+  'jquery', 'underscore', 'backbone', 'tilejs','infinity',
   'views/tile',
   'models/Item', 'models/GridTemplate', 
   'collections/Items'
   
-], function($, _, Backbone, tilejs, 
+], function($, _, Backbone, tilejs, inf,
     Tile, 
     ItemModel, GridTemplate, 
     ItemsCollection){
@@ -33,7 +33,10 @@ define([
 
         $("body").on('click', ".grid section", $.proxy(this.toggleItem, this));
         $(window).on('scroll', ".grid", $.proxy(this.onScrollHandler, this));
-        $("#grid").on( "scroll", $.proxy(this.onScrollHandler, this));
+        $("#grid").on( "scroll", $.proxy(this.onScrollingHandler, this));
+        
+        this.ListView = new infinity.ListView($('#grid'));
+
         
         var updateLayout = _.debounce($.proxy(this.debounce, this), 500);
         window.addEventListener("resize", updateLayout, false);
@@ -109,11 +112,39 @@ define([
         
 //        $('.item.open').removeClass('open');
     },
-    
+    onScrollingHandler:function () {
+        clearTimeout(this.timer);
+        this.timer = setTimeout( $.proxy(this.onScrollHandler, this), 250);  
+    },
     onScrollHandler: function(e) {
         if (this._isFetching) return;
+        var that = this;
+//         $('#grid>section').filter(function() {
+// //            return $(this).attr("attrName") > "someValue";
+//             return that.isElementInViewport($(this)[0])
+//         }).hide();
         var $g =  $('#grid')
-        if (($g.get(0).scrollHeight - $g.scrollTop())<=  $g.height()) {
+        console.log(' scrollHeight ' + $g.get(0).scrollHeight);
+        console.log(' scrollTop ' + $g.scrollTop());
+        console.log(' height ' + $g.height());
+        var h = $g.height();
+        var top = ($g.get(0).scrollHeight - $g.scrollTop())
+        var bottom = $g.scrollTop();
+
+        console.log($('#grid>section:eq(0)').position());
+        console.log($('#grid>section:eq(0)').height());
+        $('#grid>section').removeClass('vp').filter(function() {
+            return !(
+                $(this).position().top+$(this).height()<0 &&
+                $(this).position().top < (h*2))
+        }).addClass('vp');
+        // $('#grid>section').removeClass('vp').filter(function() {
+        //     var os = $(this).offset();
+        //     console.log(os.top);
+        //     console.log(top);            
+        //     return !(os.top > 0 || os.bottom>= bottom);
+        // }).addClass('vp');
+        if (($g.get(0).scrollHeight - $g.scrollTop()) <=  $g.height()+50) {
             this.isFetching = true;
             this.collection.fetch({update: true, remove: false});
         }
@@ -135,6 +166,21 @@ define([
         this.grid.redraw(true);
         this._isFetching = false;
     },
+    isElementInViewport:function(el) {
+        var rect = $(el).offset();
+        var $g =  $('#grid')
+        var min
+        
+        
+        return (rect.top > $g.scrollTop() && rect.bottom < ($g.height() - $g.scrollTop()))
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document. documentElement.clientHeight) && /*or $(window).height() */
+            rect.right <= (window.innerWidth || document. documentElement.clientWidth) /*or $(window).width() */
+            );
+    },
+
     drawGrid:function() {        
 //        var tpl = this.gridTpl.get('template')[$('.layoutTpl li.active').index()];
         var tpl = this.gridTpl.get('template')[0];
