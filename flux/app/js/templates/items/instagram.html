@@ -1,0 +1,29 @@
+<section data-provider="<%= source_service %>"  data-type="<%= type %>">	
+	<div <% if(picture.url){ %> style="background-image:url('<%= picture.url %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+		<div class='icons'>
+			<span class="entypo-social <%= source_service %>"></span> <%= dateFormat %> <%= popularity %> <span class="entypo heart"></span>
+		</div>
+		<div class="tint">
+			<div class="hover">
+				<div class='title'>
+					<h2><span class="entypo-social <%= source_service %>"></span> <%= popularity %> <span class="entypo heart red"></span></h2>
+					<ul class="likes">
+				    <% _.each(recipients, function(obj, i) { %>
+						<li><a href="http://instagram.com/<%= obj.username %>" target="_blank"><img src="<%= obj.profile_picture %>"/></a></li>
+				    <%}); %>	
+					</ul>
+				</div>
+			</div>			
+		</div>	
+		<div class='content'>
+			<div class="story-opened" style="width:<%= picture.width %>px;height:<%= picture.height %>px;">
+				<img src="<%= picture.url %>" alt="" />
+				<div class="infos">
+					<h2><span class="entypo-social <%= source_service %>"></span> From <a href="<%= author.url %>" target="_blank" class="red"><%= author.name %></a> <span class="entypo heart red"></span> <a href="#">Love it</a></h2>
+				</div>
+			</div>			
+		</div>
+
+	</div>
+
+</section>

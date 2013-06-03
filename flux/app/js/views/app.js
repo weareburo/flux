@@ -8,6 +8,7 @@ define([
     var App = Backbone.View.extend({
 	    el: '#main',
         initialize: function () {
+
             var menu = new Menu();
             var grid = new Grid(); // this could be encapsulated in a larger view later on //
         }

@@ -1,6 +1,6 @@
 define([
     'jquery', 'underscore', 'backbone', 'tilejs',
-    "text!templates/items/tumblr.html"
+    'templates/itemsTemplates'
 ], function($, _, Backbone, tilejs, _tpl){
 
     'use strict';
@@ -12,7 +12,7 @@ define([
         },
         t:undefined,
         initialize: function () {
-            this.template = _.template(_tpl);
+            this.template = _.template(_tpl[this.model.get('source_service')]);
         },
 
         click:function() {
@@ -26,7 +26,7 @@ define([
             return this.t;
         },
         render: function(){
-
+            console.log(this.model.toJSON())
             var that = this;
             return this.template(this.model.toJSON())
         }

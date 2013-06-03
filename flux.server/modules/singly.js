@@ -5,9 +5,6 @@ var normalizer = require('./normalizer');
 var _ = require("underscore");
 var mongoose = require('mongoose');
 
-
-
-
 // Constructor
 function Singly(token) {
     this.token=token;
@@ -34,6 +31,8 @@ Singly.prototype.consumeFeeds = function() {
 
 Singly.prototype.poller = function (service, options) {
     var that = this;
+    
+    console.log(options.host+options.path);
 
     var reqGet = https.get(options, function (res) {
         var content=''; 
@@ -44,8 +43,8 @@ Singly.prototype.poller = function (service, options) {
             var feed = JSON.parse(content);
             var o = [];
             _.each(feed, function (item) {
-//                console.log(item);
                 var type = item.map.oembed.type;
+                console.log(type);
                 var normalizedItem = normalizer[service+'_'+type](item);
                 var mongoItem = new that.itemModel(normalizedItem)
                     .save(function (err) {

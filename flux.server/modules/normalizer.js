@@ -224,6 +224,7 @@ Normalizer.prototype.instagram_photo = function(item) {
 
     var result = {
         date: item.map.earliest,
+        dateFormat: moment(item.map.earliest).fromNow(),        
         author: {
           name: item.map.author.name,
           id: null,
@@ -232,14 +233,14 @@ Normalizer.prototype.instagram_photo = function(item) {
             url: item.map.author.photo
           }
         },
-        recipients: item.map.participants,
+        recipients: item.data.likes.data,
         title: null,
         message: null,
         tags: null,
         picture: {
-          url: item.oembed.url,
-          height: item.oembed.width,
-          width: item.oembed.height
+          url: item.map.oembed.url,
+          height: item.map.oembed.width,
+          width: item.map.oembed.height
         },
         thumbnail: {
             url: null,
@@ -247,14 +248,20 @@ Normalizer.prototype.instagram_photo = function(item) {
             width: null,
         },
         link: {
-          url: null,
+          url: item.map.oembed.provider_url,
           title: null,
           description: null
         },
         type: 'photos',
-        popularity: item.data.note_count,
+        popularity: item.data.likes.count,
         source_service: 'instagram'
     };
+    
+    // if (item.data.likes.count > 0) {
+    //     returnitem.data.likes.count
+    // }
+    
+    
     return result;   
 }
 

@@ -192,6 +192,9 @@ left: 0;
     background-color: #181818;
     clear: both;
 }
+.grid.expanded {
+    overflow: hidden!important;
+}
 .entypo-social.twitter {
     color:#fff;
 }
@@ -274,6 +277,7 @@ left: 0;
     width: 100%;
 }
 .grid > section:hover .tint,
+.grid > section.expanded .tint,
 .grid > section .story-content.no-bg .tint
  {
     top: 0px;
@@ -288,9 +292,10 @@ left: 0;
 
     background: rgba(54, 168, 238, 0.6);
 }
+.grid > section.expanded .icons {
+    display:none;
+}
 .grid > section .hover {
-/*    display:none;*/
-
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out;
@@ -300,38 +305,75 @@ left: 0;
     display:block;   
 }
 
-/*tumblr*/
-.grid > section[data-provider='tumblr'] .hover {
+/*tumblr, instagram*/
+.grid > section[data-provider='tumblr'] .hover, 
+.grid > section[data-provider='instagram'] .hover {
     position:absolute;
     bottom:-80px;
     width:100%;
     height:80px;
     background-color:#fff;
 }
-.grid > section[data-provider='tumblr']:hover .hover {
+.grid > section[data-provider='tumblr']:hover .hover,
+.grid > section[data-provider='instagram']:hover .hover {
     bottom:0;
 }
-.grid > section[data-provider='tumblr'] .hover h2 {
+.grid > section[data-provider='tumblr'] .hover h2,
+.grid > section[data-provider='instagram'] .hover h2 {
     font-size:16px;
     color:#000;
     text-overflow: ellipsis;
 }
-.grid > section[data-provider='tumblr'] .hover h2 .entypo-social {
+.grid > section[data-provider='tumblr'] .hover h2 .entypo-social,
+.grid > section[data-provider='instagram'] .hover h2 .entypo-social {
     color:#114e63;
 }
-.grid > section[data-provider='tumblr']:hover .icons {
+.grid > section[data-provider='tumblr']:hover .icons,
+.grid > section[data-provider='instagram']:hover .icons {
     display:none;
 }
 
+.grid > section[data-provider='instagram'] .hover .title h2 {
+    float:left;
+}
+.grid > section[data-provider='instagram'] .likes {
+
+}
+.grid > section[data-provider='instagram'] .likes img{
+    width:20px;
+}
+
+
+.grid .story-opened {
+    position:relative;
+}
+.grid .story-opened .infos a{
+    color:#000;
+}
+.grid .story-opened .infos h2  {
+    color:#000;
+}
+.grid .story-opened .infos .entypo-social {
+    color:#ccc;
+}
+.grid .story-opened .infos {
+    color:#000;
+    position:absolute;
+    left:0;
+    bottom:0px;
+    width:100%;
+    height:80px;
+    background-color:#fff;
+}
+
+
+
 .grid > section.expanded .tint {
-    background: rgba(0,0,0, 1);
+    background: #181818;
 }
 .grid > section.expanded .hover {
     display:none;
 }
-
-
-
 
 
 section .icons {
@@ -409,6 +451,9 @@ section .actions .inline-list{
 }
 .vp {
 
+}
+.red {
+    color:#dc113c!important;
 }
 .source {
     padding: 5px;
