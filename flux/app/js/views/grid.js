@@ -35,7 +35,7 @@ define([
         $(window).on('scroll', ".grid", $.proxy(this.onScrollHandler, this));
         $("#grid").on( "scroll", $.proxy(this.onScrollingHandler, this));
         
-        this.ListView = new infinity.ListView($('#grid'));
+//        this.ListView = new infinity.ListView($('#grid'));
 
         
         var updateLayout = _.debounce($.proxy(this.debounce, this), 500);
@@ -46,8 +46,7 @@ define([
         this.gridTpl = new GridTemplate();
         
         this.setUpGrid();
-        
-        
+
         this.listenTo(this.collection, 'add', this.addOne);
 //        this.listenTo(this.collection, 'reset', this.addOne);
         this.listenTo(this.collection, 'sync', this.render);
@@ -147,7 +146,7 @@ define([
         //     console.log(top);            
         //     return !(os.top > 0 || os.bottom>= bottom);
         // }).addClass('vp');
-        if (($g.get(0).scrollHeight - $g.scrollTop()) <=  $g.height()+50) {
+        if (($g.get(0).scrollHeight - $g.scrollTop()) <=  $g.height()+500) {
             this.isFetching = true;
             this.collection.fetch({update: true, remove: false});
         }
