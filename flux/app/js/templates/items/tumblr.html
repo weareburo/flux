@@ -1,5 +1,6 @@
-<section data-provider="<%= source_service %>"  data-type="<%= type %>">	
-	<div <% if(picture.url){ %> style="background-image:url('<%= picture.url %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+<div class="section" data-provider="<%= source_service %>"  data-type="<%= type %>">	
+	<div <% if(picture.url){ %> style="background-image:url('http://flux.inoui.io/images/?file=<%= picture.url %>&w=<%= thumbnail.w %>&h=<%= thumbnail.h %>')" class="story-content"  <% }else{ %> class="story-content no-bg"  <% }%>>
+
 		<div class='icons'>
 			<span class="entypo-social c-<%= source_service %>"></span> <%= dateFormat %> <%= popularity %> notes
 		</div>
@@ -10,12 +11,7 @@
 			</div>			
 		</div>	
 
-		<div class='content'>
-			<div class="story-opened" style="width:<%= picture.width %>px;height:<%= picture.height %>px;">
-				<img src="<%= picture.url %>" alt="" />
-			</div>			
-		</div>
 
 	</div>
 
-</section>
+</div>

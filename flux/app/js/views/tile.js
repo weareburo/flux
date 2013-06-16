@@ -47,8 +47,14 @@ define([
             return this.t;
         },
         render: function(){
+            
+            var tmb = this.model.get("thumbnail");
+            tmb.w = 250;
+            tmb.h = 250;
+            this.model.set("thumbnail", tmb);
 
-            var that = this.el;
+            // this.model.set('tumbnail.w', 100);
+            // this.model.set('tumbnail.h', 100);            
             return this.template(this.model.toJSON());
         }
 	});

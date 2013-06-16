@@ -30,7 +30,9 @@ define([
           thumbnail: {
             url: null,
             height: null,
-            width: null
+            width: null,
+            w:100,
+            h:100
           },
           link: {
             url: null,

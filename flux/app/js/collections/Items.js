@@ -10,7 +10,7 @@ define([
 //          this.fetch();
       },
       parse:function(res) {
-          console.log(res.data);
+
           this.total = res.count;
           this.limit = res.limit;
           this.page++;
