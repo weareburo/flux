@@ -16,7 +16,8 @@ define([
 
             this.model.on('change', this.change, this);
 
-            this.template = _.template(_tpl[this.model.get('source_service')]);
+//            this.template = _.template(_tpl[this.model.get('source_service')]);
+            this.template = _.template(_tpl['item']);
         },
         change:function() {
             this.$el.toggleClass("active");

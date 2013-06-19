@@ -199,11 +199,11 @@ left: 0;
     color:#fff;
 }
 .grid > .section {
-/*    display:none;*/
+    display:none;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    background-color:#333333;
     cursor:pointer;
     overflow: hidden;
     position: absolute;
@@ -212,7 +212,10 @@ left: 0;
 	transition: all 0.5s ease-out;
 
 }
-
+.grid > .section figure img{
+    min-width:100%;
+    min-height:100%;
+}
 .grid > .section .story-content {
     background-size: cover;
     background-repeat: no-repeat!important;
@@ -296,10 +299,10 @@ left: 0;
     display:none;
 }
 .grid > .section .hover {
-/*  -webkit-transition: all 0.2s ease-out;
+  -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
-*/}
+}
 .grid > .section:hover .hover,
 .grid > .section .story-content.no-bg .hover {
     display:block;   

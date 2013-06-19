@@ -6,18 +6,71 @@ define([
     FluxGrid = function(view) {
         console.log(Tiles.Grid);
         Tiles.Grid.call(this, view);
-        this.$view = view;
-        this.templateFactory = TemplateFactory;
-        this.cellSizeMin = 150;
-        this.cellPadding = 15;        
-        
+        this.view = view;
+        this.$el = $(view);        
+        this.template = TemplateFactory.get();
+//        this.templateFactory = TemplateFactory;
+        this.cellSizeMin = this.getSize();
+        // this.cellPadding = 15;        
+        console.log(this.getContentWidth());
     };
     
     FluxGrid.prototype = new Tiles.Grid();
     FluxGrid.constructor = FluxGrid;
-//    PulseApp.Views.PulseGrid.constructor = PulseApp.Views.PulseGrid;
 
-    console.log(FluxGrid.constructor);
+
+    FluxGrid.prototype.isMobile = false;
+    
+    FluxGrid.prototype.getSize = function() {
+
+        return ($(window).width() <= 640) ? 140 : Math.floor($(window).width()/6);
+    }
+
+    FluxGrid.prototype.getContentWidth = function() {
+        return this.$el.width();
+    };
+
+    FluxGrid.prototype.resize = function() {
+// //        alert('ads');
+        this.cellSizeMin = this.getSize();
+        Tiles.Grid.prototype.resize.call(this)
+    };
+    FluxGrid.prototype.resizeColumns = function() {
+        var d = Tiles.Grid.prototype.resizeColumns.call(this);
+        return d
+    };
+    // 
+    // a.prototype.resizeColumns = function() {
+    //   var d = this.getContentWidth();
+    //   return Math.max(1, Math.floor((d + this.cellPadding) / (this.cellSizeMin + this.cellPadding)))
+    // };
+    // a.prototype.resizeCellSize = function() {
+    //   var d = this.getContentWidth();
+    //   return Math.ceil((d + this.cellPadding) / this.numCols) - this.cellPadding
+    // };
+    // a.prototype.resize = function() {
+    //   var e = this.resizeColumns();
+    //   if (this.numCols !== e && e > 0) {
+    //     this.numCols = e;
+    //     this.isDirty = true
+    //   }
+    //   var d = this.resizeCellSize();
+    //   if (this.cellSize !== d && d > 0) {
+    //     this.cellSize = d;
+    //     this.isDirty = true
+    //   }
+    // };
+    // 
+    
+    // 
+    FluxGrid.prototype.ensureTemplate = function (nbTiles) {
+        console.log('ensureTemplate')
+        console.log(this.numCols, nbTiles)
+        this.template = TemplateFactory.get(nbTiles);
+//        this.isDirty = true
+        Tiles.Grid.prototype.ensureTemplate.call(this, nbTiles)
+    }
+    // 
 
     return FluxGrid;
     

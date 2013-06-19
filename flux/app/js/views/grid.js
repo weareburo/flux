@@ -31,7 +31,7 @@ define([
     },
     initialize:function() {
 
-        $("body").on('click', ".grid section", $.proxy(this.toggleItem, this));
+        $("body").on('click', ".grid .section", $.proxy(this.toggleItem, this));
         //$(window).on('scroll', ".grid", $.proxy(this.onScrollHandler, this));
         $("#grid").on( "scroll", $.proxy(this.onScrollingHandler, this));
 
@@ -70,9 +70,6 @@ define([
     setUpGrid:function() {
         var el = document.getElementById('grid');
         this.grid = new FluxGrid(el);
-        // this.grid.resizeColumns = function() {
-        //     return this.template.numCols;
-        // };
         this.grid.createTile = $.proxy(this.createTile, this);
 //            var tile = new Tiles.Tile(tileId, $('#grid>section:eq('+Number(tileId-1)+')'));
     },
@@ -96,6 +93,27 @@ define([
             
             model.set('open', true);
             
+            var $g =  $('#grid')
+            var h = $(window).height();
+            var top = ($g.get(0).scrollHeight - $g.scrollTop())
+            var bottom = $g.scrollTop();
+
+            $('#grid>.section').removeClass('vp').filter(function() {
+                
+                if ($(this).position().top+$(this).height()>0 && $(this).position().top < h) {
+                    console.log(h, $(this).position().top)
+                    return true;
+                }
+                return false;                
+            }).addClass('vp');
+
+            // $('#grid>.section').removeClass('vp').filter(function() {
+            //     var os = $(this).offset();
+            //     console.log(os.top);
+            //     console.log(top);
+            //     return !(os.top > 0 || os.bottom>= bottom);
+            // }).addClass('vp');
+
             
             $('.grid').addClass('expanded');
             $(e.currentTarget).addClass('expanded') 
@@ -143,11 +161,10 @@ define([
         // $('#grid>section').removeClass('vp').filter(function() {
         //     var os = $(this).offset();
         //     console.log(os.top);
-        //     console.log(top);            
+        //     console.log(top);
         //     return !(os.top > 0 || os.bottom>= bottom);
         // }).addClass('vp');
         if (($g.get(0).scrollHeight - $g.scrollTop()) <=  $g.height()+1500) {
-            console.log("UPDATING");
             this._isFetching = true;
             this.collection.fetch({update: true, remove: false});
         }
