@@ -1,7 +1,8 @@
 define([
     'jquery', 'underscore', 'backbone', 'tilejs',
-    'templates/itemsTemplates'
-], function($, _, Backbone, tilejs, _tpl){
+    'templates/itemsTemplates',
+    'text!templates/items/itemOpen.html'
+], function($, _, Backbone, tilejs, _tpl, _tplOpen){
 
     'use strict';
 
@@ -21,17 +22,26 @@ define([
         },
         change:function() {
             this.$el.toggleClass("active");
-            if (this.model.get('open') && this.model.get('type') == 'video') {
-                setTimeout($.proxy(this.video, this), 1000);
+            var t = _.template(_tplOpen);
+
+            if (this.model.get('open')) {
+                this.$el.find('.content').append(t(this.model.toJSON())).fadeIn();
+            } else {
+                this.$el.find('.content').fadeOut('slow', function(){
+                    $(this).html('');
+                })
             }
-            if (!this.model.get('open') && this.model.get('type') == 'video') {
-                setTimeout($.proxy(this.closeVideo, this), 1000);
-            }
+            // if (this.model.get('open') && this.model.get('type') == 'video') {
+            //     setTimeout($.proxy(this.video, this), 1000);
+            // }
+            // if (!this.model.get('open') && this.model.get('type') == 'video') {
+            //     setTimeout($.proxy(this.closeVideo, this), 1000);
+            // }
             
         },
         video:function () {
             console.log($(this.el).html())
-            var $content = this.$el.find('.content');
+            var $content = $(this.$el).find('.content');
             $content.find('img').replaceWith('<iframe id="video" title="" width="'+$content.data('width')+'" height="'+$content.data('height')+'" src="'+$content.data('video')+'" frameborder="0" allowfullscreen></iframe>');
         },
         closeVideo:function () {
@@ -53,10 +63,10 @@ define([
             tmb.w = 250;
             tmb.h = 250;
             this.model.set("thumbnail", tmb);
-
+//            this.$el = this.template(this.model.toJSON());
             // this.model.set('tumbnail.w', 100);
             // this.model.set('tumbnail.h', 100);            
-            return this.template(this.model.toJSON());
+            return this.template(this.model.toJSON());;
         }
 	});
 

@@ -79,7 +79,7 @@ define([
         return tile.getTile();
     },
     toggleItem:function(e) {
-        var model = this.collection.at($(e.currentTarget).index()-1);
+        var model = this.collection.at($(e.currentTarget).index());
         if ($(e.currentTarget).hasClass('open')) {
             
             model.set('open', false);
